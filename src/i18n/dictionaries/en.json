@@ -75,13 +75,12 @@
     "dropHint": "separator , or ;",
     "loading": "Processing…",
     "sourceSample": "Current source: provided sample files",
-    "sourceImported": "Current source: {files} imported file(s) · {providers}",
+    "sourceImported": "Current source: {files} imported file(s) · {providers} provider(s)",
     "reset": "Back to sample data",
     "errors": {
       "tooLarge": "{file}: file too large (maximum {max} MB)",
       "notCsv": "{file}: only .csv files are accepted",
-      "readFailed": "{file}: could not be read",
-      "sampleFailed": "Could not load the sample data. Please try again."
+      "readFailed": "{file}: could not be read"
     }
   },
   "quality": {

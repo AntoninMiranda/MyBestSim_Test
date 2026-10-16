@@ -75,13 +75,12 @@
     "dropHint": "séparateur , ou ;",
     "loading": "Analyse en cours…",
     "sourceSample": "Source actuelle : fichiers d'exemple fournis",
-    "sourceImported": "Source actuelle : {files} fichier(s) importé(s) · {providers}",
+    "sourceImported": "Source actuelle : {files} fichier(s) importé(s) · {providers} fournisseur(s)",
     "reset": "Revenir aux données d'exemple",
     "errors": {
       "tooLarge": "{file} : fichier trop volumineux (maximum {max} Mo)",
       "notCsv": "{file} : seuls les fichiers .csv sont acceptés",
-      "readFailed": "{file} : lecture impossible",
-      "sampleFailed": "Impossible de charger les données d'exemple. Réessayez."
+      "readFailed": "{file} : lecture impossible"
     }
   },
   "quality": {

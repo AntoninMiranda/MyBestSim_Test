@@ -65,7 +65,6 @@ export default async function DashboardPage({ params }: PageProps<"/[lang]">) {
         <DashboardClient
           initialStats={sampleStats}
           initialReport={sample.report}
-          sampleFileNames={sample.fileNames}
           dict={dict}
           locale={lang}
         />

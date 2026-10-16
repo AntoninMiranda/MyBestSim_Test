@@ -21,7 +21,7 @@ Partie 1 du test de recrutement « Stagiaire Développeur IA & Automatisation »
 2. **Grille des prix médians** (data × durée) : comment se forme le prix ?
 3. **Qualité de l'import** : l'import du jour s'est-il bien passé ? Fichiers lus, lignes rejetées et motif.
 
-On peut aussi **importer les CSV du jour** depuis le dashboard : chaque fichier remplace le catalogue de son fournisseur et toutes les statistiques sont recalculées. Le dashboard est disponible en **français et en anglais**.
+On peut aussi **importer les CSV du jour** depuis le dashboard : le dashboard analyse alors uniquement les fichiers importés, et toutes les statistiques sont recalculées. Un bouton permet de revenir aux données d'exemple. Le dashboard est disponible en **français et en anglais**.
 
 ## Choix assumés
 
@@ -56,7 +56,6 @@ src/
   domain/          # règles métier pures (sans React, Next ni fs) + tests
     parse.ts       #   lecture et validation des CSV
     stats.ts       #   calcul des indicateurs
-    merge.ts       #   fusion d'un import avec le catalogue existant
   infrastructure/  # sources de CSV : fichiers d'exemple (build) et fichiers importés (navigateur)
   i18n/            # langues, dictionnaires FR/EN
   components/      # vues (shadcn/ui) ; seul dashboard-client.tsx a un état
@@ -67,7 +66,7 @@ src/
 On n'a pas mis de classes de use case, de repositories ni d'injection de dépendances : avec un seul cas d'usage (« calculer les stats d'un catalogue »), ce serait de la structure sans bénéfice.
 
 Quelques choix techniques :
-- **Statique et léger.** Les statistiques sont calculées au build ; le navigateur reçoit quelques Ko de résultats, pas les 5 056 lignes. Les lignes brutes ne sont chargées que si l'on importe des fichiers.
+- **Statique et léger.** Les statistiques des fichiers d'exemple (`data/`) sont calculées au build ; le navigateur reçoit quelques Ko de résultats, pas les 5 056 lignes. Seuls les fichiers importés sont lus et analysés dans le navigateur.
 - **Graphiques en HTML/CSS** (tableaux et barres) plutôt qu'avec une bibliothèque de graphiques. Ils sont présents dans le HTML statique, lisibles par les lecteurs d'écran, et les valeurs sont toujours écrites (la couleur n'est jamais la seule information).
 - **Stack** : Next.js 16 (App Router, Cache Components), React 19, TypeScript strict, Tailwind CSS 4, shadcn/ui, PapaParse, Vitest.
 
@@ -76,7 +75,7 @@ Quelques choix techniques :
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 47 tests, dont les valeurs attendues sur les 18 fichiers
+npm test           # 46 tests, dont les valeurs attendues sur les 18 fichiers
 npm run build
 ```
 

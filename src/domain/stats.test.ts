@@ -84,7 +84,7 @@ describe("computeStats", () => {
 });
 
 describe("oracle sur les 18 fichiers fournis", () => {
-  const dir = path.join(process.cwd(), "public/data");
+  const dir = path.join(process.cwd(), "data");
   const files = readdirSync(dir)
     .filter((f) => f.endsWith(".csv"))
     .map((name) => ({ name, text: readFileSync(path.join(dir, name), "utf-8") }));

@@ -7,39 +7,32 @@ import { KpiCards } from "@/components/kpi-cards";
 import { PriceGrid } from "@/components/price-grid";
 import { ProviderBreakdown } from "@/components/provider-breakdown";
 import { QualityPanel } from "@/components/quality-panel";
-import { mergeByProvider } from "@/domain/merge";
 import { parseFiles } from "@/domain/parse";
 import { computeStats, type Stats } from "@/domain/stats";
-import type { ImportReport, Product } from "@/domain/types";
+import type { ImportReport } from "@/domain/types";
 import { interpolate, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
-import {
-  fetchSampleFiles,
-  MAX_FILE_SIZE_MB,
-  readUploadedFiles,
-} from "@/infrastructure/read-uploaded-files";
+import { MAX_FILE_SIZE_MB, readUploadedFiles } from "@/infrastructure/read-uploaded-files";
 import { getFormatters } from "@/lib/format";
 
 interface DashboardClientProps {
   initialStats: Stats;
   initialReport: ImportReport;
-  sampleFileNames: string[];
   dict: Dictionary;
   locale: Locale;
 }
 
 interface ImportedState {
-  products: Product[];
   stats: Stats;
   report: ImportReport;
-  updatedProviders: string[];
+  providerCount: number;
 }
 
 /**
- * Seul composant avec l'état du catalogue. Le premier affichage utilise les statistiques calculées au build ;
- * les lignes brutes ne sont chargées qu'au premier import, pour fusionner avec les fichiers déposés.
+ * Seul composant avec l'état du catalogue. Le premier affichage utilise les statistiques des fichiers
+ * d'exemple, calculées au build ; un import remplace ce jeu de données par les fichiers déposés.
  */
-export function DashboardClient({ initialStats, initialReport, sampleFileNames, dict, locale }: DashboardClientProps) {
+export function DashboardClient({ initialStats, initialReport, dict, locale }: DashboardClientProps) {
   const [imported, setImported] = useState<ImportedState | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -56,23 +49,10 @@ export function DashboardClient({ initialStats, initialReport, sampleFileNames, 
       setErrors(upload.errors.map((e) => interpolate(t.errors[e.kind], { file: e.file, max: MAX_FILE_SIZE_MB })));
       if (upload.files.length === 0) return;
 
-      let base = imported?.products;
-      if (!base) {
-        try {
-          base = parseFiles(await fetchSampleFiles(sampleFileNames)).products;
-        } catch {
-          setErrors((prev) => [...prev, t.errors.sampleFailed]);
-          return;
-        }
-      }
-      const { products: importedProducts, report } = parseFiles(upload.files);
-      const products = mergeByProvider(base, importedProducts);
-      setImported({
-        products,
-        stats: computeStats(products),
-        report,
-        updatedProviders: [...new Set(importedProducts.map((p) => p.provider))],
-      });
+      // Les fichiers importés remplacent tout le jeu de données : le dashboard analyse uniquement l'import.
+      const { products, report } = parseFiles(upload.files);
+      const stats = computeStats(products);
+      setImported({ stats, report, providerCount: stats.providers.length });
     } finally {
       setLoading(false);
     }
@@ -81,7 +61,7 @@ export function DashboardClient({ initialStats, initialReport, sampleFileNames, 
   const sourceLabel = imported
     ? interpolate(t.sourceImported, {
         files: fmt.int(imported.report.files.length),
-        providers: imported.updatedProviders.join(", ") || dict.common.empty,
+        providers: fmt.int(imported.providerCount),
       })
     : t.sourceSample;
 

@@ -33,14 +33,3 @@ export async function readUploadedFiles(
 
   return { files, errors };
 }
-
-/** Recharge les CSV d'exemple servis en statique (nécessaire seulement pour fusionner un import). */
-export async function fetchSampleFiles(names: string[]): Promise<CsvFile[]> {
-  return Promise.all(
-    names.map(async (name) => {
-      const response = await fetch(`/data/${encodeURIComponent(name)}`);
-      if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
-      return { name, text: await response.text() };
-    }),
-  );
-}
