@@ -77,7 +77,7 @@ export function PriceGrid({ grid, dict, fmt }: PriceGridProps) {
                 return (
                   <TableCell
                     key={grid.validities[i]}
-                    className="rounded-xl px-2.5 py-3.5 text-center font-semibold tabular-nums"
+                    className="rounded-[12px] px-2.5 py-3.5 text-center font-semibold tabular-nums"
                     style={{ backgroundColor: bg, color: fg }}
                   >
                     {price === null ? dict.common.empty : fmt.eur(price)}

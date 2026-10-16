@@ -25,7 +25,7 @@ export default async function DashboardPage({ params }: PageProps<"/[lang]">) {
       <header className="border-b border-brand-line">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-[18px]">
           <Link href={`/${lang}`} aria-label={dict.header.home} className="flex items-center gap-2.5">
-            <span className="flex size-[38px] items-center justify-center rounded-xl bg-brand">
+            <span className="flex size-[38px] items-center justify-center rounded-[12px] bg-brand">
               <CardSim className="size-5 text-white" aria-hidden="true" />
             </span>
             <span className="text-[21px] font-bold tracking-tight">

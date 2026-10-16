@@ -23,7 +23,7 @@ interface QualityPanelProps {
 
 function Tile({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-2xl bg-secondary p-4">
+    <div className="flex flex-col gap-0.5 rounded-[16px] bg-secondary p-4">
       <span className="text-[26px] font-bold tabular-nums">{value}</span>
       <span className="text-[13px] text-muted-foreground">{label}</span>
     </div>
@@ -61,7 +61,7 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
       {rejects.length > 0 && (
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold">{t.rejectsTitle}</h3>
-          <div className="overflow-hidden rounded-2xl border border-brand-line">
+          <div className="overflow-hidden rounded-[16px] border border-brand-line">
             <Table>
               <TableHeader className="bg-secondary">
                 <TableRow className="hover:bg-transparent">
@@ -91,7 +91,7 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-brand-line">
+      <div className="overflow-hidden rounded-[16px] border border-brand-line">
         <Table id="quality-files">
           <TableHeader className="bg-secondary">
             <TableRow className="hover:bg-transparent">

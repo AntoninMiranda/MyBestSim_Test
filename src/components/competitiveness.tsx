@@ -25,11 +25,11 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
     <SectionCard id="competitiveness-title" title={t.title} subtitle={t.subtitle}>
       <ul className="flex gap-[18px] text-[13px] text-muted-foreground" aria-hidden="true">
         <li className="inline-flex items-center gap-1.5">
-          <span className="size-3 rounded-sm bg-cheaper" />
+          <span className="size-3 rounded-[4px] bg-cheaper" />
           {t.legendCheaper}
         </li>
         <li className="inline-flex items-center gap-1.5">
-          <span className="size-3 rounded-sm bg-pricier" />
+          <span className="size-3 rounded-[4px] bg-pricier" />
           {t.legendPricier}
         </li>
       </ul>
@@ -50,10 +50,10 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
               <TableRow key={provider} className="hover:bg-transparent">
                 <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-medium">{provider}</TableCell>
                 <TableCell className="w-full py-1" aria-hidden="true">
-                  <div className="relative h-3.5 rounded bg-secondary">
+                  <div className="relative h-3.5 rounded-[4px] bg-secondary">
                     <div className="absolute -inset-y-[3px] left-1/2 w-px bg-slate-400" />
                     <div
-                      className={cn("absolute inset-y-0 rounded", cheaper ? "bg-cheaper" : "bg-pricier")}
+                      className={cn("absolute inset-y-0 rounded-[4px]", cheaper ? "bg-cheaper" : "bg-pricier")}
                       style={{ left: `${cheaper ? 50 - width : 50}%`, width: `${width}%` }}
                     />
                   </div>
@@ -68,7 +68,7 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
       </Table>
 
       {competitiveness.length > 0 && (
-        <Alert className="mt-auto rounded-2xl border-0 bg-success-soft px-[18px] py-4 text-success-foreground">
+        <Alert className="mt-auto rounded-[16px] border-0 bg-success-soft px-[18px] py-4 text-success-foreground">
           <Info className="text-success" aria-hidden="true" />
           <AlertDescription className="text-sm leading-relaxed text-success-foreground">
             <p>

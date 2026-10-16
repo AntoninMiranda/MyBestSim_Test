@@ -26,7 +26,7 @@ function KpiCard({ icon: Icon, tone, label, value, hint, compact }: KpiCardProps
   return (
     <Card className="rounded-[20px] shadow-[0_14px_40px_rgb(15_23_42/6%)] ring-border [--card-spacing:--spacing(5.5)]">
       <CardContent className="flex flex-col gap-2">
-        <span className={cn("flex size-10 items-center justify-center rounded-xl", TONES[tone])}>
+        <span className={cn("flex size-10 items-center justify-center rounded-[12px]", TONES[tone])}>
           <Icon className="size-5" aria-hidden="true" />
         </span>
         <span className="text-sm text-muted-foreground">{label}</span>
