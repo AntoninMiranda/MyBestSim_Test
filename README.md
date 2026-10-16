@@ -76,7 +76,7 @@ Quelques choix techniques :
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 48 tests, dont les valeurs attendues sur les 18 fichiers
+npm test           # 47 tests, dont les valeurs attendues sur les 18 fichiers
 npm run build
 ```
 

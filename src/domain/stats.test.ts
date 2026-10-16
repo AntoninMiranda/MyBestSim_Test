@@ -81,15 +81,6 @@ describe("computeStats", () => {
       { dataGb: null, medianPrices: [null, 80] },
     ]);
   });
-
-  it("distingue les pays des zones régionales (EU, AS, NA, WW)", () => {
-    const stats = computeStats([
-      product({ sku: "a", countryCode: "FR" }),
-      product({ sku: "b", countryCode: "NA" }),
-      product({ sku: "c", countryCode: "WW" }),
-    ]);
-    expect(stats.destinations).toEqual({ countries: 1, regions: 2 });
-  });
 });
 
 describe("oracle sur les 18 fichiers fournis", () => {

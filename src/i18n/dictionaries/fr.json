@@ -4,16 +4,23 @@
     "description": "Statistiques clés du catalogue eSIM importé chaque jour depuis les fichiers CSV des fournisseurs."
   },
   "header": {
-    "eyebrow": "Test de recrutement · Partie 1",
-    "title": "Catalogue eSIM",
-    "summary": "{products} produits · {providers} fournisseurs · {countries} pays et {regions} zones",
-    "language": "Langue"
+    "home": "MyBestSim, accueil du tableau de bord",
+    "language": "Langue",
+    "languages": {
+      "fr": "Français",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "title": "Catalogue eSIM :",
+    "titleAccent": "l'essentiel en un coup d'œil",
+    "importCta": "Importer les CSV du jour",
+    "qualityCta": "Qualité de l'import"
   },
   "common": {
     "empty": "—",
     "unlimited": "Illimité",
-    "days": "{n} j",
-    "products": "{n} produits"
+    "days": "{n} j"
   },
   "kpi": {
     "sectionTitle": "Indicateurs clés",
@@ -23,7 +30,7 @@
     },
     "above100": {
       "label": "Produits à plus de 100 €",
-      "hint": "{pct} du catalogue (prix strictement supérieur à 100 €)"
+      "hint": "{pct} du catalogue"
     },
     "priceRange": {
       "label": "Fourchette de prix",
@@ -31,11 +38,11 @@
     },
     "meanData": {
       "label": "Data moyenne par carte",
-      "hint": "Sur {limited} forfaits chiffrés. Les {unlimited} illimités sont exclus : on ne peut pas faire la moyenne d'une quantité infinie, et les compter comme 0 Go la fausserait."
+      "hint": "Sur {limited} forfaits chiffrés · {unlimited} illimités exclus"
     },
     "meanPrice": {
       "label": "Prix moyen",
-      "hint": "Médiane : {median}. Les forfaits illimités tirent la moyenne vers le haut."
+      "hint": "Médiane : {median}"
     }
   },
   "providers": {
@@ -46,25 +53,30 @@
   },
   "competitiveness": {
     "title": "Compétitivité prix",
-    "subtitle": "Écart médian entre le prix du fournisseur et le prix médian du marché pour un forfait identique (même data, même durée). Négatif = moins cher que le marché.",
+    "subtitle": "Écart médian au prix du marché pour un forfait identique (même data, même durée).",
+    "legendCheaper": "Moins cher que le marché",
+    "legendPricier": "Plus cher",
     "provider": "Fournisseur",
     "gap": "Écart au marché",
-    "insight": "Tous les fournisseurs sont à ±{max} du marché : ce qui fait le prix, c'est le forfait choisi, pas le fournisseur.",
-    "whyNotPerGb": "Pourquoi pas le prix moyen au Go ? Il pénalise les fournisseurs qui proposent beaucoup de petits forfaits, car le Go coûte plus cher sur un forfait de 1 Go que sur un forfait de 50 Go. Avec ce calcul, 4S eSIM paraîtrait le plus cher alors qu'il est au prix du marché."
+    "insightStrong": "Tous les fournisseurs sont à ±{max} du marché.",
+    "insight": "Ce qui fait le prix, c'est le forfait choisi, pas le fournisseur."
   },
   "grid": {
     "title": "Grille des prix médians",
-    "subtitle": "Prix médian selon la quantité de data et la durée de validité",
-    "data": "Data",
-    "validity": "Validité"
+    "corner": "Data \\ Validité",
+    "legendLow": "Moins cher",
+    "legendHigh": "Plus cher"
   },
   "import": {
     "title": "Importer les CSV du jour",
-    "description": "Déposez un ou plusieurs fichiers fournisseurs. Chaque fichier remplace le catalogue de son fournisseur ; les autres fournisseurs sont conservés. Les fichiers sont traités dans votre navigateur : rien n'est envoyé sur un serveur.",
-    "choose": "Choisir des fichiers CSV",
-    "reset": "Revenir aux données d'exemple",
+    "dropTitle": "Déposez vos fichiers ici",
+    "dropOr": "ou",
+    "choose": "choisissez des fichiers CSV",
+    "dropHint": "séparateur , ou ;",
     "loading": "Analyse en cours…",
-    "imported": "{files} fichier(s) importé(s) · fournisseurs mis à jour : {providers}",
+    "sourceSample": "Source actuelle : fichiers d'exemple fournis",
+    "sourceImported": "Source actuelle : {files} fichier(s) importé(s) · {providers}",
+    "reset": "Revenir aux données d'exemple",
     "errors": {
       "tooLarge": "{file} : fichier trop volumineux (maximum {max} Mo)",
       "notCsv": "{file} : seuls les fichiers .csv sont acceptés",
@@ -74,14 +86,16 @@
   },
   "quality": {
     "title": "Qualité de l'import",
-    "sourceSample": "Source : fichiers d'exemple fournis",
-    "sourceImported": "Source : dernier import",
-    "summary": "{files} fichiers lus · {valid} lignes valides · {rejected} lignes rejetées",
+    "statusOk": "Import réussi",
+    "statusWarn": "{n} ligne(s) rejetée(s)",
+    "filesRead": "fichiers lus",
+    "validRows": "lignes valides",
+    "rejectedRows": "lignes rejetées",
     "file": "Fichier",
     "valid": "Valides",
     "rejected": "Rejetées",
-    "noRejects": "Aucune ligne rejetée.",
-    "filesDetail": "Détail par fichier ({n})",
+    "showAll": "Voir les {n} fichiers",
+    "showLess": "Réduire la liste",
     "rejectsTitle": "Lignes rejetées",
     "line": "Ligne",
     "reason": "Motif",
