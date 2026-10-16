@@ -97,18 +97,20 @@ export function DashboardClient({ initialStats, initialReport, sampleFileNames, 
       <PriceGrid grid={stats.priceGrid} dict={dict} fmt={fmt} />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <ImportPanel
-          dict={dict}
-          loading={loading}
-          sourceLabel={sourceLabel}
-          errors={errors}
-          canReset={imported !== null}
-          onFiles={handleFiles}
-          onReset={() => {
-            setImported(null);
-            setErrors([]);
-          }}
-        />
+        <div id="import" className="flex scroll-mt-6 *:flex-1">
+          <ImportPanel
+            dict={dict}
+            loading={loading}
+            sourceLabel={sourceLabel}
+            errors={errors}
+            canReset={imported !== null}
+            onFiles={handleFiles}
+            onReset={() => {
+              setImported(null);
+              setErrors([]);
+            }}
+          />
+        </div>
         <div id="quality" className="flex scroll-mt-6 *:flex-1">
           <QualityPanel report={imported?.report ?? initialReport} dict={dict} fmt={fmt} />
         </div>

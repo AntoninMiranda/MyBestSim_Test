@@ -8,9 +8,9 @@ import type { Formatters } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const TONES = {
-  brand: "bg-brand-soft text-primary",
-  warning: "bg-warning-soft text-warning",
-  success: "bg-success-soft text-success",
+  blue: "border-blue-line bg-blue-soft text-primary",
+  danger: "border-danger-line bg-danger-soft text-danger",
+  success: "border-success-line bg-success-soft text-success",
 } as const;
 
 interface KpiCardProps {
@@ -24,21 +24,26 @@ interface KpiCardProps {
 
 function KpiCard({ icon: Icon, tone, label, value, hint, compact }: KpiCardProps) {
   return (
-    <Card className="rounded-[20px] shadow-[0_14px_40px_rgb(15_23_42/6%)] ring-border [--card-spacing:--spacing(5.5)]">
+    <Card
+      className={cn(
+        "rounded-[12px] border border-border shadow-[0_1px_3px_rgb(0_0_0/5%)] ring-0 [--card-spacing:--spacing(5)]",
+        "transition-[transform,border-color] duration-300 hover:border-bar motion-safe:hover:-translate-y-1",
+      )}
+    >
       <CardContent className="flex flex-col gap-2">
-        <span className={cn("flex size-10 items-center justify-center rounded-[12px]", TONES[tone])}>
+        <span className={cn("flex size-10 items-center justify-center rounded-[8px] border", TONES[tone])}>
           <Icon className="size-5" aria-hidden="true" />
         </span>
-        <span className="text-sm text-muted-foreground">{label}</span>
+        <span className="text-sm font-semibold text-muted-foreground">{label}</span>
         <span
           className={cn(
-            "font-bold tracking-tight tabular-nums",
+            "font-extrabold tracking-tight text-navy tabular-nums",
             compact ? "text-[28px] leading-tight" : "text-[34px] leading-none",
           )}
         >
           {value}
         </span>
-        <span className="text-[13px] leading-normal text-subtle-foreground">{hint}</span>
+        <span className="text-[13px] leading-normal text-muted-foreground">{hint}</span>
       </CardContent>
     </Card>
   );
@@ -57,21 +62,21 @@ export function KpiCards({ stats, dict, fmt }: KpiCardsProps) {
 
   return (
     <section aria-labelledby="kpi-title" className="flex flex-col gap-4">
-      <h2 id="kpi-title" className="text-[22px] font-semibold">
+      <h2 id="kpi-title" className="text-[22px] font-extrabold text-navy">
         {t.sectionTitle}
       </h2>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-4">
-        <KpiCard icon={CardSim} tone="brand" label={t.total.label} value={fmt.int(stats.totalProducts)} hint={t.total.hint} />
+        <KpiCard icon={CardSim} tone="blue" label={t.total.label} value={fmt.int(stats.totalProducts)} hint={t.total.hint} />
         <KpiCard
           icon={ArrowUpRight}
-          tone="warning"
+          tone="danger"
           label={t.above100.label}
           value={fmt.int(stats.productsAbove100)}
           hint={interpolate(t.above100.hint, { pct: fmt.pct(share) })}
         />
         <KpiCard
           icon={ArrowLeftRight}
-          tone="brand"
+          tone="blue"
           compact
           label={t.priceRange.label}
           value={
@@ -100,7 +105,7 @@ export function KpiCards({ stats, dict, fmt }: KpiCardsProps) {
         />
         <KpiCard
           icon={Euro}
-          tone="brand"
+          tone="blue"
           label={t.meanPrice.label}
           value={stats.meanPriceEur === null ? empty : fmt.eur(stats.meanPriceEur)}
           hint={interpolate(t.meanPrice.hint, {

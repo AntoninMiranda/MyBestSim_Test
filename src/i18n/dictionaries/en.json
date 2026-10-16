@@ -20,7 +20,7 @@
   "common": {
     "empty": "—",
     "unlimited": "Unlimited",
-    "days": "{n} d"
+    "days": "{n} days"
   },
   "kpi": {
     "sectionTitle": "Key figures",

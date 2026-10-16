@@ -12,7 +12,7 @@ interface LocaleSwitcherProps {
 export function LocaleSwitcher({ current, label, names }: LocaleSwitcherProps) {
   return (
     <div className="flex items-center gap-2.5">
-      <span id="locale-label" className="text-[13px] text-muted-foreground">
+      <span id="locale-label" className="text-[13px] font-semibold text-muted-foreground">
         {label}
       </span>
       <Select
@@ -24,7 +24,7 @@ export function LocaleSwitcher({ current, label, names }: LocaleSwitcherProps) {
       >
         <SelectTrigger
           aria-labelledby="locale-label locale-value"
-          className="min-h-11 rounded-full border-brand-line bg-secondary px-3.5 font-medium"
+          className="min-h-11 rounded-[10px] border-border bg-background px-3.5 font-semibold text-navy"
         >
           <SelectValue id="locale-value" />
         </SelectTrigger>

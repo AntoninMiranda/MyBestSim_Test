@@ -13,7 +13,7 @@ import type { Formatters } from "@/lib/format";
 
 const VISIBLE_FILES = 5;
 const MAX_LISTED_REJECTS = 20;
-const HEAD = "px-4 text-xs uppercase tracking-wide text-muted-foreground";
+const HEAD = "h-auto px-4 py-3 text-xs font-bold uppercase tracking-wide text-white";
 
 interface QualityPanelProps {
   report: ImportReport;
@@ -23,8 +23,8 @@ interface QualityPanelProps {
 
 function Tile({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-[16px] bg-secondary p-4">
-      <span className="text-[26px] font-bold tabular-nums">{value}</span>
+    <div className="flex flex-col gap-0.5 rounded-[10px] border border-border bg-background px-4 py-3.5">
+      <span className="text-[26px] font-extrabold text-navy tabular-nums">{value}</span>
       <span className="text-[13px] text-muted-foreground">{label}</span>
     </div>
   );
@@ -39,12 +39,12 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
 
   const status =
     rejects.length === 0 ? (
-      <Badge className="h-auto gap-1.5 rounded-full bg-success-soft px-3 py-1.5 text-[13px] font-semibold text-success">
+      <Badge className="bg-success-gradient h-auto gap-1.5 rounded-[20px] px-3 py-[5px] text-[11px] font-extrabold tracking-wide text-white uppercase">
         <CircleCheck aria-hidden="true" />
         {t.statusOk}
       </Badge>
     ) : (
-      <Badge className="h-auto gap-1.5 rounded-full bg-warning-soft px-3 py-1.5 text-[13px] font-semibold text-warning">
+      <Badge className="bg-warning-gradient h-auto gap-1.5 rounded-[20px] px-3 py-[5px] text-[11px] font-extrabold tracking-wide text-white uppercase">
         <TriangleAlert aria-hidden="true" />
         {interpolate(t.statusWarn, { n: fmt.int(rejects.length) })}
       </Badge>
@@ -61,9 +61,9 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
       {rejects.length > 0 && (
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold">{t.rejectsTitle}</h3>
-          <div className="overflow-hidden rounded-[16px] border border-brand-line">
+          <div className="overflow-hidden rounded-[8px] bg-background shadow-[0_2px_8px_rgb(0_0_0/10%)]">
             <Table>
-              <TableHeader className="bg-secondary">
+              <TableHeader className="bg-navy-gradient [&_tr]:border-0">
                 <TableRow className="hover:bg-transparent">
                   <TableHead className={HEAD}>{t.file}</TableHead>
                   <TableHead className={HEAD}>{t.line}</TableHead>
@@ -72,7 +72,7 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
               </TableHeader>
               <TableBody>
                 {rejects.slice(0, MAX_LISTED_REJECTS).map((r, i) => (
-                  <TableRow key={`${i}:${r.file}:${r.line}`} className="border-brand-soft hover:bg-transparent">
+                  <TableRow key={`${i}:${r.file}:${r.line}`} className="border-border hover:bg-secondary">
                     <TableCell className="px-4">{r.file}</TableCell>
                     <TableCell className="px-4 tabular-nums">{r.line}</TableCell>
                     <TableCell className="px-4">
@@ -91,9 +91,9 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-[16px] border border-brand-line">
+      <div className="overflow-hidden rounded-[8px] bg-background shadow-[0_2px_8px_rgb(0_0_0/10%)]">
         <Table id="quality-files">
-          <TableHeader className="bg-secondary">
+          <TableHeader className="bg-navy-gradient [&_tr]:border-0">
             <TableRow className="hover:bg-transparent">
               <TableHead className={HEAD}>{t.file}</TableHead>
               <TableHead className={`${HEAD} text-right`}>{t.valid}</TableHead>
@@ -102,19 +102,19 @@ export function QualityPanel({ report, dict, fmt }: QualityPanelProps) {
           </TableHeader>
           <TableBody>
             {files.map((f, i) => (
-              <TableRow key={`${i}:${f.file}`} className="border-brand-soft hover:bg-transparent">
-                <TableCell className="px-4 font-medium">{f.file}</TableCell>
+              <TableRow key={`${i}:${f.file}`} className="border-border hover:bg-secondary">
+                <TableCell className="px-4 font-semibold">{f.file}</TableCell>
                 <TableCell className="px-4 text-right tabular-nums">{fmt.int(f.valid)}</TableCell>
-                <TableCell className="px-4 text-right text-subtle-foreground tabular-nums">{fmt.int(f.rejected)}</TableCell>
+                <TableCell className="px-4 text-right text-muted-foreground tabular-nums">{fmt.int(f.rejected)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
         {report.files.length > VISIBLE_FILES && (
-          <div className="border-t border-brand-soft px-2 py-1">
+          <div className="px-2 py-1">
             <Button
               variant="link"
-              className="font-semibold"
+              className="font-bold"
               aria-expanded={showAll}
               aria-controls="quality-files"
               onClick={() => setShowAll((v) => !v)}

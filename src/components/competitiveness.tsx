@@ -23,13 +23,13 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
 
   return (
     <SectionCard id="competitiveness-title" title={t.title} subtitle={t.subtitle}>
-      <ul className="flex gap-[18px] text-[13px] text-muted-foreground" aria-hidden="true">
+      <ul className="flex flex-wrap gap-[18px] text-[13px] font-semibold text-muted-foreground" aria-hidden="true">
         <li className="inline-flex items-center gap-1.5">
-          <span className="size-3 rounded-[4px] bg-cheaper" />
+          <span className="size-3 rounded-[3px] bg-cheaper" />
           {t.legendCheaper}
         </li>
         <li className="inline-flex items-center gap-1.5">
-          <span className="size-3 rounded-[4px] bg-pricier" />
+          <span className="size-3 rounded-[3px] bg-pricier" />
           {t.legendPricier}
         </li>
       </ul>
@@ -48,17 +48,17 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
             const cheaper = medianGapPct < 0;
             return (
               <TableRow key={provider} className="hover:bg-transparent">
-                <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-medium">{provider}</TableCell>
+                <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-semibold">{provider}</TableCell>
                 <TableCell className="w-full py-1" aria-hidden="true">
-                  <div className="relative h-3.5 rounded-[4px] bg-secondary">
-                    <div className="absolute -inset-y-[3px] left-1/2 w-px bg-slate-400" />
+                  <div className="relative h-3 rounded-[3px] bg-blue-soft">
+                    <div className="absolute -inset-y-[3px] left-1/2 w-px bg-blue-border" />
                     <div
-                      className={cn("absolute inset-y-0 rounded-[4px]", cheaper ? "bg-cheaper" : "bg-pricier")}
+                      className={cn("absolute inset-y-0 rounded-[3px]", cheaper ? "bg-cheaper" : "bg-pricier")}
                       style={{ left: `${cheaper ? 50 - width : 50}%`, width: `${width}%` }}
                     />
                   </div>
                 </TableCell>
-                <TableCell className="py-1 pr-0 text-right font-semibold tabular-nums">
+                <TableCell className="py-1 pr-0 text-right font-bold text-navy tabular-nums">
                   {fmt.signedPct(medianGapPct)}
                 </TableCell>
               </TableRow>
@@ -68,11 +68,12 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
       </Table>
 
       {competitiveness.length > 0 && (
-        <Alert className="mt-auto rounded-[16px] border-0 bg-success-soft px-[18px] py-4 text-success-foreground">
-          <Info className="text-success" aria-hidden="true" />
-          <AlertDescription className="text-sm leading-relaxed text-success-foreground">
+        <Alert className="bg-hero mt-auto rounded-[8px] border-[1.5px] border-blue-border px-4 py-3.5 text-navy">
+          <Info className="text-primary" aria-hidden="true" />
+          <AlertDescription className="text-sm leading-relaxed text-navy">
             <p>
-              <strong>{interpolate(t.insightStrong, { max: fmt.pct(displayedMax) })}</strong> {t.insight}
+              <strong className="font-extrabold">{interpolate(t.insightStrong, { max: fmt.pct(displayedMax) })}</strong>{" "}
+              {t.insight}
             </p>
           </AlertDescription>
         </Alert>

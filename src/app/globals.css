@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -24,18 +24,20 @@
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+  --color-navy: var(--navy);
   --color-brand: var(--brand);
-  --color-brand-strong: var(--brand-strong);
-  --color-brand-soft: var(--brand-soft);
-  --color-brand-line: var(--brand-line);
+  --color-bar: var(--bar);
+  --color-blue-soft: var(--blue-soft);
+  --color-blue-line: var(--blue-line);
+  --color-blue-border: var(--blue-border);
   --color-cheaper: var(--cheaper);
   --color-pricier: var(--pricier);
   --color-success-soft: var(--success-soft);
+  --color-success-line: var(--success-line);
   --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning-soft: var(--warning-soft);
-  --color-warning: var(--warning);
-  --color-subtle-foreground: var(--subtle-foreground);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-line: var(--danger-line);
+  --color-danger: var(--danger);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -63,23 +65,23 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #1F2937;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #1F2937;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0369a1;
+  --popover-foreground: #1F2937;
+  --primary: #1E40AF;
   --primary-foreground: #ffffff;
-  --secondary: #f8fbff;
-  --secondary-foreground: #0f172a;
-  --muted: #f8fbff;
-  --muted-foreground: #475569;
-  --accent: #eef4ff;
-  --accent-foreground: #0f172a;
+  --secondary: #f9fafb;
+  --secondary-foreground: #1F2937;
+  --muted: #f9fafb;
+  --muted-foreground: #64748b;
+  --accent: #EFF6FF;
+  --accent-foreground: #1E3A8A;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: rgb(15 23 42 / 12%);
-  --input: #dbeafe;
-  --ring: #0ea5e9;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #4589FF;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -94,19 +96,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  /* Couleurs de la maquette */
-  --brand: #0ea5e9;
-  --brand-strong: #0284c7;
-  --brand-soft: #eef4ff;
-  --brand-line: #dbeafe;
-  --cheaper: #0284c7;
-  --pricier: #f97316;
-  --success-soft: #ecfdf5;
+  /* Couleurs du design system MyBestSim (maquette) */
+  --navy: #1E3A8A;
+  --brand: #007bff;
+  --bar: #4589FF;
+  --blue-soft: #EFF6FF;
+  --blue-line: #DBEAFE;
+  --blue-border: #93C5FD;
+  --cheaper: #1E40AF;
+  --pricier: #F59E0B;
+  --success-soft: #ECFDF5;
+  --success-line: #A7F3D0;
   --success: #047857;
-  --success-foreground: #064e3b;
-  --warning-soft: #fff7ed;
-  --warning: #c2410c;
-  --subtle-foreground: #64748b;
+  --danger-soft: #FEF2F2;
+  --danger-line: #FECACA;
+  --danger: #B91C1C;
 }
 
 
@@ -120,4 +124,32 @@
   html {
     @apply font-sans;
   }
+}
+/* Dégradés et ombres du design system, réutilisés par plusieurs composants. */
+@utility bg-hero {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+}
+@utility bg-navy-gradient {
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+}
+@utility bg-cta-red {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+}
+@utility bg-cta-navy {
+  background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+}
+@utility bg-success-gradient {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+@utility bg-warning-gradient {
+  background: linear-gradient(135deg, #B45309 0%, #92400E 100%);
+}
+@utility bg-section {
+  background: linear-gradient(145deg, #ffffff 0%, #f8faff 60%, #f0f5ff 100%);
+}
+@utility bg-section-warm {
+  background: linear-gradient(145deg, #ffffff 0%, #fef7f7 60%, #fff8f1 100%);
+}
+@utility shadow-section {
+  box-shadow: 0 0 0 1px rgb(30 58 138 / 8%), 0 4px 6px -1px rgb(30 58 138 / 8%), 0 20px 40px -8px rgb(30 58 138 / 15%);
 }

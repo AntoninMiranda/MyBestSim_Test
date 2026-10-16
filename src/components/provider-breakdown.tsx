@@ -28,13 +28,13 @@ export function ProviderBreakdown({ providers, dict, fmt }: ProviderBreakdownPro
         <TableBody className="[&_tr]:border-0">
           {providers.map(({ provider, count }) => (
             <TableRow key={provider} className="hover:bg-transparent">
-              <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-medium">{provider}</TableCell>
+              <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-semibold">{provider}</TableCell>
               <TableCell className="w-full py-1" aria-hidden="true">
-                <div className="h-3.5 overflow-hidden rounded-full bg-brand-soft">
-                  <div className="h-full rounded-full bg-brand" style={{ width: `${(count / max) * 100}%` }} />
+                <div className="h-3 overflow-hidden rounded-[6px] bg-blue-soft">
+                  <div className="h-full rounded-[6px] bg-bar" style={{ width: `${(count / max) * 100}%` }} />
                 </div>
               </TableCell>
-              <TableCell className="py-1 pr-0 text-right font-semibold tabular-nums">{fmt.int(count)}</TableCell>
+              <TableCell className="py-1 pr-0 text-right font-bold text-navy tabular-nums">{fmt.int(count)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
