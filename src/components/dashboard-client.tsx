@@ -48,7 +48,7 @@ export function DashboardClient({ initialStats, initialReport, sampleFileNames, 
   const t = dict.import;
   const stats = imported?.stats ?? initialStats;
 
-  async function handleFiles(fileList: FileList) {
+  async function handleFiles(fileList: File[]) {
     setLoading(true);
     setErrors([]);
     try {

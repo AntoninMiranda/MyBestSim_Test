@@ -14,7 +14,7 @@ interface ImportPanelProps {
   sourceLabel: string;
   errors: string[];
   canReset: boolean;
-  onFiles: (files: FileList) => void;
+  onFiles: (files: File[]) => void;
   onReset: () => void;
 }
 
@@ -26,7 +26,9 @@ export function ImportPanel({ dict, loading, sourceLabel, errors, canReset, onFi
   function handleDrop(event: DragEvent<HTMLLabelElement>) {
     event.preventDefault();
     setDragging(false);
-    if (!loading && event.dataTransfer.files.length) onFiles(event.dataTransfer.files);
+    // Copie : le navigateur vide dataTransfer.files dès la fin de l'événement.
+    const files = Array.from(event.dataTransfer.files);
+    if (!loading && files.length) onFiles(files);
   }
 
   return (
@@ -61,8 +63,11 @@ export function ImportPanel({ dict, loading, sourceLabel, errors, canReset, onFi
           disabled={loading}
           className="sr-only"
           onChange={(e) => {
-            if (e.target.files?.length) onFiles(e.target.files);
+            // Copie avant de vider le champ (pour pouvoir resélectionner les mêmes fichiers) : vider
+            // l'input vide aussi sa FileList.
+            const files = Array.from(e.target.files ?? []);
             e.target.value = "";
+            if (files.length) onFiles(files);
           }}
         />
       </label>
