@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "Catalogue eSIM · Tableau de bord MyBestSim",
+    "description": "Statistiques clés du catalogue eSIM importé chaque jour depuis les fichiers CSV des fournisseurs."
+  },
+  "header": {
+    "eyebrow": "Test de recrutement · Partie 1",
+    "title": "Catalogue eSIM",
+    "summary": "{products} produits · {providers} fournisseurs · {countries} pays et {regions} zones",
+    "language": "Langue"
+  },
+  "common": {
+    "empty": "—",
+    "unlimited": "Illimité",
+    "days": "{n} j",
+    "products": "{n} produits"
+  },
+  "kpi": {
+    "sectionTitle": "Indicateurs clés",
+    "total": {
+      "label": "Cartes eSIM",
+      "hint": "Tous fournisseurs confondus"
+    },
+    "above100": {
+      "label": "Produits à plus de 100 €",
+      "hint": "{pct} du catalogue (prix strictement supérieur à 100 €)"
+    },
+    "priceRange": {
+      "label": "Fourchette de prix",
+      "hint": "Le plus cher : {product} ({provider})"
+    },
+    "meanData": {
+      "label": "Data moyenne par carte",
+      "hint": "Sur {limited} forfaits chiffrés. Les {unlimited} illimités sont exclus : on ne peut pas faire la moyenne d'une quantité infinie, et les compter comme 0 Go la fausserait."
+    },
+    "meanPrice": {
+      "label": "Prix moyen",
+      "hint": "Médiane : {median}. Les forfaits illimités tirent la moyenne vers le haut."
+    }
+  },
+  "providers": {
+    "title": "Répartition par fournisseur",
+    "subtitle": "Nombre de cartes proposées par chaque fournisseur",
+    "provider": "Fournisseur",
+    "count": "Cartes"
+  },
+  "competitiveness": {
+    "title": "Compétitivité prix",
+    "subtitle": "Écart médian entre le prix du fournisseur et le prix médian du marché pour un forfait identique (même data, même durée). Négatif = moins cher que le marché.",
+    "provider": "Fournisseur",
+    "gap": "Écart au marché",
+    "insight": "Tous les fournisseurs sont à ±{max} du marché : ce qui fait le prix, c'est le forfait choisi, pas le fournisseur.",
+    "whyNotPerGb": "Pourquoi pas le prix moyen au Go ? Il pénalise les fournisseurs qui proposent beaucoup de petits forfaits, car le Go coûte plus cher sur un forfait de 1 Go que sur un forfait de 50 Go. Avec ce calcul, 4S eSIM paraîtrait le plus cher alors qu'il est au prix du marché."
+  },
+  "grid": {
+    "title": "Grille des prix médians",
+    "subtitle": "Prix médian selon la quantité de data et la durée de validité",
+    "data": "Data",
+    "validity": "Validité"
+  },
+  "import": {
+    "title": "Importer les CSV du jour",
+    "description": "Déposez un ou plusieurs fichiers fournisseurs. Chaque fichier remplace le catalogue de son fournisseur ; les autres fournisseurs sont conservés. Les fichiers sont traités dans votre navigateur : rien n'est envoyé sur un serveur.",
+    "choose": "Choisir des fichiers CSV",
+    "reset": "Revenir aux données d'exemple",
+    "loading": "Analyse en cours…",
+    "imported": "{files} fichier(s) importé(s) · fournisseurs mis à jour : {providers}",
+    "errors": {
+      "tooLarge": "{file} : fichier trop volumineux (maximum {max} Mo)",
+      "notCsv": "{file} : seuls les fichiers .csv sont acceptés",
+      "readFailed": "{file} : lecture impossible",
+      "sampleFailed": "Impossible de charger les données d'exemple. Réessayez."
+    }
+  },
+  "quality": {
+    "title": "Qualité de l'import",
+    "sourceSample": "Source : fichiers d'exemple fournis",
+    "sourceImported": "Source : dernier import",
+    "summary": "{files} fichiers lus · {valid} lignes valides · {rejected} lignes rejetées",
+    "file": "Fichier",
+    "valid": "Valides",
+    "rejected": "Rejetées",
+    "noRejects": "Aucune ligne rejetée.",
+    "filesDetail": "Détail par fichier ({n})",
+    "rejectsTitle": "Lignes rejetées",
+    "line": "Ligne",
+    "reason": "Motif",
+    "more": "… et {n} autres",
+    "reasons": {
+      "MISSING_COLUMNS": "Colonnes obligatoires manquantes (fichier ignoré)",
+      "MISSING_SKU": "SKU manquant",
+      "MISSING_COUNTRY": "Code destination manquant",
+      "MISSING_PROVIDER": "Fournisseur manquant",
+      "INVALID_PRICE": "Prix absent, invalide ou nul",
+      "NON_EUR_CURRENCY": "Devise différente de l'euro",
+      "INVALID_DATA": "Quantité de data invalide",
+      "INVALID_VALIDITY": "Durée de validité invalide",
+      "DUPLICATE_SKU": "SKU en double"
+    }
+  },
+  "footer": {
+    "source": "Données : 18 fichiers CSV fournisseurs fournis pour le test.",
+    "code": "Code source sur GitHub"
+  }
+}
