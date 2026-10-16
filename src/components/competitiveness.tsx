@@ -1,6 +1,6 @@
 import { Info } from "lucide-react";
+import { SectionCard } from "@/components/section-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { Stats } from "@/domain/stats";
 import { interpolate } from "@/i18n/config";
@@ -22,59 +22,62 @@ export function Competitiveness({ competitiveness, dict, fmt }: CompetitivenessP
   const displayedMax = Math.ceil(maxGap * 2) / 2;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          <h2>{t.title}</h2>
-        </CardTitle>
-        <CardDescription>{t.subtitle}</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        {competitiveness.length > 0 && (
-          <Alert>
-            <Info aria-hidden="true" />
-            <AlertDescription>
-              {interpolate(t.insight, { max: fmt.pct(displayedMax) })}
-            </AlertDescription>
-          </Alert>
-        )}
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>{t.provider}</TableHead>
-              <TableHead className="w-full">
-                <span className="sr-only">{t.gap}</span>
-              </TableHead>
-              <TableHead className="text-right">{t.gap}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {competitiveness.map(({ provider, medianGapPct }) => {
-              const width = (Math.abs(medianGapPct) / maxGap) * 50;
-              const cheaper = medianGapPct < 0;
-              return (
-                <TableRow key={provider}>
-                  <TableCell className="font-medium">{provider}</TableCell>
-                  <TableCell aria-hidden="true">
-                    <div className="relative h-2.5">
-                      <div className="absolute inset-y-[-4px] left-1/2 w-px bg-border" />
-                      <div
-                        className={cn(
-                          "absolute inset-y-0 rounded-full",
-                          cheaper ? "bg-bar-cheaper" : "bg-bar-pricier",
-                        )}
-                        style={cheaper ? { right: "50%", width: `${width}%` } : { left: "50%", width: `${width}%` }}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right tabular-nums">{fmt.signedPct(medianGapPct)}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-        <p className="text-xs leading-relaxed text-muted-foreground">{t.whyNotPerGb}</p>
-      </CardContent>
-    </Card>
+    <SectionCard id="competitiveness-title" title={t.title} subtitle={t.subtitle}>
+      <ul className="flex flex-wrap gap-[18px] text-[13px] font-semibold text-muted-foreground" aria-hidden="true">
+        <li className="inline-flex items-center gap-1.5">
+          <span className="size-3 rounded-[3px] bg-cheaper" />
+          {t.legendCheaper}
+        </li>
+        <li className="inline-flex items-center gap-1.5">
+          <span className="size-3 rounded-[3px] bg-pricier" />
+          {t.legendPricier}
+        </li>
+      </ul>
+
+      <Table>
+        <TableHeader className="sr-only">
+          <TableRow>
+            <TableHead>{t.provider}</TableHead>
+            <TableHead />
+            <TableHead>{t.gap}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody className="[&_tr]:border-0">
+          {competitiveness.map(({ provider, medianGapPct }) => {
+            const width = Math.max((Math.abs(medianGapPct) / maxGap) * 50, 0.6);
+            const cheaper = medianGapPct < 0;
+            return (
+              <TableRow key={provider} className="hover:bg-transparent">
+                <TableCell className="w-28 max-w-28 truncate py-1 pl-0 font-semibold">{provider}</TableCell>
+                <TableCell className="w-full py-1" aria-hidden="true">
+                  <div className="relative h-3 rounded-[3px] bg-blue-soft">
+                    <div className="absolute -inset-y-[3px] left-1/2 w-px bg-blue-border" />
+                    <div
+                      className={cn("absolute inset-y-0 rounded-[3px]", cheaper ? "bg-cheaper" : "bg-pricier")}
+                      style={{ left: `${cheaper ? 50 - width : 50}%`, width: `${width}%` }}
+                    />
+                  </div>
+                </TableCell>
+                <TableCell className="py-1 pr-0 text-right font-bold text-navy tabular-nums">
+                  {fmt.signedPct(medianGapPct)}
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+
+      {competitiveness.length > 0 && (
+        <Alert className="bg-hero mt-auto rounded-[8px] border-[1.5px] border-blue-border px-4 py-3.5 text-navy">
+          <Info className="text-primary" aria-hidden="true" />
+          <AlertDescription className="text-sm leading-relaxed text-navy">
+            <p>
+              <strong className="font-extrabold">{interpolate(t.insightStrong, { max: fmt.pct(displayedMax) })}</strong>{" "}
+              {t.insight}
+            </p>
+          </AlertDescription>
+        </Alert>
+      )}
+    </SectionCard>
   );
 }

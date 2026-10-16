@@ -1,8 +1,5 @@
 import type { Product } from "./types";
 
-/** Codes de zones présents dans les fichiers : ce ne sont pas des pays (NA = Amérique du Nord, pas la Namibie). */
-export const REGION_CODES = new Set(["EU", "AS", "NA", "WW"]);
-
 export const PRICE_THRESHOLD_EUR = 100;
 
 export interface PricePoint {
@@ -39,7 +36,6 @@ export interface Stats {
   meanDataGb: number | null;
   limitedCount: number;
   unlimitedCount: number;
-  destinations: { countries: number; regions: number };
   providers: ProviderCount[];
   competitiveness: ProviderCompetitiveness[];
   priceGrid: { validities: number[]; rows: PriceGridRow[] };
@@ -112,8 +108,6 @@ export function computeStats(products: Product[]): Stats {
   const prices = products.map((p) => p.priceEur);
   const limitedData = products.flatMap((p) => (p.dataGb === null ? [] : [p.dataGb]));
   const byPrice = [...products].sort((a, b) => a.priceEur - b.priceEur);
-  const destinationCodes = new Set(products.map((p) => p.countryCode));
-  const regions = [...destinationCodes].filter((c) => REGION_CODES.has(c)).length;
 
   return {
     totalProducts: products.length,
@@ -125,7 +119,6 @@ export function computeStats(products: Product[]): Stats {
     meanDataGb: limitedData.length ? mean(limitedData) : null,
     limitedCount: limitedData.length,
     unlimitedCount: products.length - limitedData.length,
-    destinations: { countries: destinationCodes.size - regions, regions },
     providers: providerBreakdown(products),
     competitiveness: competitivenessIndex(products),
     priceGrid: priceGrid(products),

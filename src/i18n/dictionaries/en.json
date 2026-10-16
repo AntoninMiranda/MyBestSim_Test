@@ -4,16 +4,23 @@
     "description": "Key statistics of the eSIM catalogue imported daily from supplier CSV files."
   },
   "header": {
-    "eyebrow": "Recruitment test · Part 1",
-    "title": "eSIM Catalogue",
-    "summary": "{products} products · {providers} providers · {countries} countries and {regions} regions",
-    "language": "Language"
+    "home": "MyBestSim, dashboard home",
+    "language": "Language",
+    "languages": {
+      "fr": "Français",
+      "en": "English"
+    }
+  },
+  "hero": {
+    "title": "eSIM catalogue:",
+    "titleAccent": "the essentials at a glance",
+    "importCta": "Import today's CSV files",
+    "qualityCta": "Import quality"
   },
   "common": {
     "empty": "—",
     "unlimited": "Unlimited",
-    "days": "{n} d",
-    "products": "{n} products"
+    "days": "{n} days"
   },
   "kpi": {
     "sectionTitle": "Key figures",
@@ -23,7 +30,7 @@
     },
     "above100": {
       "label": "Products over €100",
-      "hint": "{pct} of the catalogue (price strictly above €100)"
+      "hint": "{pct} of the catalogue"
     },
     "priceRange": {
       "label": "Price range",
@@ -31,11 +38,11 @@
     },
     "meanData": {
       "label": "Average data per card",
-      "hint": "Across {limited} plans with a data cap. The {unlimited} unlimited plans are excluded: an infinite amount cannot be averaged, and counting them as 0 GB would skew the result."
+      "hint": "Across {limited} capped plans · {unlimited} unlimited excluded"
     },
     "meanPrice": {
       "label": "Average price",
-      "hint": "Median: {median}. Unlimited plans pull the average up."
+      "hint": "Median: {median}"
     }
   },
   "providers": {
@@ -46,42 +53,48 @@
   },
   "competitiveness": {
     "title": "Price competitiveness",
-    "subtitle": "Median gap between the provider's price and the market median for the same plan (same data, same validity). Negative = cheaper than the market.",
+    "subtitle": "Median gap to the market price for the same plan (same data, same validity).",
+    "legendCheaper": "Cheaper than the market",
+    "legendPricier": "More expensive",
     "provider": "Provider",
     "gap": "Gap to market",
-    "insight": "Every provider is within ±{max} of the market: price is driven by the plan you pick, not by the provider.",
-    "whyNotPerGb": "Why not the average price per GB? It penalises providers that sell many small plans, because a GB costs more on a 1 GB plan than on a 50 GB plan. With that metric, 4S eSIM would look the most expensive although it is priced at market level."
+    "insightStrong": "Every provider is within ±{max} of the market.",
+    "insight": "Price is driven by the plan you pick, not by the provider."
   },
   "grid": {
     "title": "Median price grid",
-    "subtitle": "Median price by data allowance and validity period",
-    "data": "Data",
-    "validity": "Validity"
+    "corner": "Data \\ Validity",
+    "legendLow": "Cheaper",
+    "legendHigh": "More expensive"
   },
   "import": {
     "title": "Import today's CSV files",
-    "description": "Drop one or more supplier files. Each file replaces its provider's catalogue; other providers are kept. Files are processed in your browser: nothing is sent to a server.",
-    "choose": "Choose CSV files",
-    "reset": "Back to sample data",
+    "dropTitle": "Drop your files here",
+    "dropOr": "or",
+    "choose": "choose CSV files",
+    "dropHint": "separator , or ;",
     "loading": "Processing…",
-    "imported": "{files} file(s) imported · providers updated: {providers}",
+    "sourceSample": "Current source: provided sample files",
+    "sourceImported": "Current source: {files} imported file(s) · {providers} provider(s)",
+    "reset": "Back to sample data",
     "errors": {
       "tooLarge": "{file}: file too large (maximum {max} MB)",
       "notCsv": "{file}: only .csv files are accepted",
-      "readFailed": "{file}: could not be read",
-      "sampleFailed": "Could not load the sample data. Please try again."
+      "readFailed": "{file}: could not be read"
     }
   },
   "quality": {
     "title": "Import quality",
-    "sourceSample": "Source: provided sample files",
-    "sourceImported": "Source: latest import",
-    "summary": "{files} files read · {valid} valid rows · {rejected} rejected rows",
+    "statusOk": "Import successful",
+    "statusWarn": "{n} rejected row(s)",
+    "filesRead": "files read",
+    "validRows": "valid rows",
+    "rejectedRows": "rejected rows",
     "file": "File",
     "valid": "Valid",
     "rejected": "Rejected",
-    "noRejects": "No rejected rows.",
-    "filesDetail": "Per-file breakdown ({n})",
+    "showAll": "Show all {n} files",
+    "showLess": "Show fewer",
     "rejectsTitle": "Rejected rows",
     "line": "Line",
     "reason": "Reason",
