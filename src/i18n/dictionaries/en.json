@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "eSIM Catalogue · MyBestSim Dashboard",
+    "description": "Key statistics of the eSIM catalogue imported daily from supplier CSV files."
+  },
+  "header": {
+    "eyebrow": "Recruitment test · Part 1",
+    "title": "eSIM Catalogue",
+    "summary": "{products} products · {providers} providers · {countries} countries and {regions} regions",
+    "language": "Language"
+  },
+  "common": {
+    "empty": "—",
+    "unlimited": "Unlimited",
+    "days": "{n} d",
+    "products": "{n} products"
+  },
+  "kpi": {
+    "sectionTitle": "Key figures",
+    "total": {
+      "label": "eSIM cards",
+      "hint": "All providers combined"
+    },
+    "above100": {
+      "label": "Products over €100",
+      "hint": "{pct} of the catalogue (price strictly above €100)"
+    },
+    "priceRange": {
+      "label": "Price range",
+      "hint": "Most expensive: {product} ({provider})"
+    },
+    "meanData": {
+      "label": "Average data per card",
+      "hint": "Across {limited} plans with a data cap. The {unlimited} unlimited plans are excluded: an infinite amount cannot be averaged, and counting them as 0 GB would skew the result."
+    },
+    "meanPrice": {
+      "label": "Average price",
+      "hint": "Median: {median}. Unlimited plans pull the average up."
+    }
+  },
+  "providers": {
+    "title": "Breakdown by provider",
+    "subtitle": "Number of cards offered by each provider",
+    "provider": "Provider",
+    "count": "Cards"
+  },
+  "competitiveness": {
+    "title": "Price competitiveness",
+    "subtitle": "Median gap between the provider's price and the market median for the same plan (same data, same validity). Negative = cheaper than the market.",
+    "provider": "Provider",
+    "gap": "Gap to market",
+    "insight": "Every provider is within ±{max} of the market: price is driven by the plan you pick, not by the provider.",
+    "whyNotPerGb": "Why not the average price per GB? It penalises providers that sell many small plans, because a GB costs more on a 1 GB plan than on a 50 GB plan. With that metric, 4S eSIM would look the most expensive although it is priced at market level."
+  },
+  "grid": {
+    "title": "Median price grid",
+    "subtitle": "Median price by data allowance and validity period",
+    "data": "Data",
+    "validity": "Validity"
+  },
+  "import": {
+    "title": "Import today's CSV files",
+    "description": "Drop one or more supplier files. Each file replaces its provider's catalogue; other providers are kept. Files are processed in your browser: nothing is sent to a server.",
+    "choose": "Choose CSV files",
+    "reset": "Back to sample data",
+    "loading": "Processing…",
+    "imported": "{files} file(s) imported · providers updated: {providers}",
+    "errors": {
+      "tooLarge": "{file}: file too large (maximum {max} MB)",
+      "notCsv": "{file}: only .csv files are accepted",
+      "readFailed": "{file}: could not be read",
+      "sampleFailed": "Could not load the sample data. Please try again."
+    }
+  },
+  "quality": {
+    "title": "Import quality",
+    "sourceSample": "Source: provided sample files",
+    "sourceImported": "Source: latest import",
+    "summary": "{files} files read · {valid} valid rows · {rejected} rejected rows",
+    "file": "File",
+    "valid": "Valid",
+    "rejected": "Rejected",
+    "noRejects": "No rejected rows.",
+    "filesDetail": "Per-file breakdown ({n})",
+    "rejectsTitle": "Rejected rows",
+    "line": "Line",
+    "reason": "Reason",
+    "more": "… and {n} more",
+    "reasons": {
+      "MISSING_COLUMNS": "Required columns missing (file skipped)",
+      "MISSING_SKU": "Missing SKU",
+      "MISSING_COUNTRY": "Missing destination code",
+      "MISSING_PROVIDER": "Missing provider",
+      "INVALID_PRICE": "Missing, invalid or zero price",
+      "NON_EUR_CURRENCY": "Currency other than euro",
+      "INVALID_DATA": "Invalid data allowance",
+      "INVALID_VALIDITY": "Invalid validity period",
+      "DUPLICATE_SKU": "Duplicate SKU"
+    }
+  },
+  "footer": {
+    "source": "Data: 18 supplier CSV files provided for the test.",
+    "code": "Source code on GitHub"
+  }
+}
