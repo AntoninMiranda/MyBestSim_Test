@@ -1,0 +1,44 @@
+Copyright (c) 2026 Antonin Miranda. Tous droits réservés.
+
+Ce dépôt contient le code source, l'article et les documents produits par
+Antonin Miranda dans le cadre du test de recrutement « Stagiaire Développeur
+IA & Automatisation » de MyBestSim.
+
+1. Ce qui est autorisé
+
+   Le dépôt est rendu public uniquement pour qu'il puisse être consulté et
+   évalué. Vous pouvez le lire, le cloner et exécuter le code localement dans
+   ce seul but. MyBestSim peut en outre l'utiliser librement pour évaluer la
+   candidature.
+
+2. Ce qui est interdit sans accord écrit préalable de l'auteur
+
+   - copier, reproduire ou republier tout ou partie du code, de l'article ou
+     des documents ;
+   - les modifier ou en créer des œuvres dérivées ;
+   - les utiliser à des fins commerciales ou en production, y compris publier
+     l'article sur un site ;
+   - les distribuer, les vendre ou les céder sous licence.
+
+   Toute demande d'autorisation se fait en contactant l'auteur via son profil
+   GitHub : https://github.com/AntoninMiranda
+
+3. Éléments exclus
+
+   Les éléments suivants n'appartiennent pas à l'auteur et restent soumis à
+   leurs propres droits ou licences :
+   - les fichiers CSV du dossier data/, fournis par MyBestSim pour le test ;
+   - les composants générés par shadcn/ui dans src/components/ui/ (licence
+     MIT) ;
+   - les dépendances installées par npm, chacune sous sa propre licence ;
+   - les marques, noms et contenus de MyBestSim et des fournisseurs cités.
+
+4. Absence de garantie
+
+   Le contenu est fourni « tel quel », sans garantie d'aucune sorte. L'auteur
+   ne peut être tenu responsable d'aucun dommage lié à son utilisation.
+
+Le fait que ce dépôt soit public sur GitHub ne vaut pas licence libre. Les
+conditions d'utilisation de GitHub permettent aux autres utilisateurs de
+consulter le dépôt et d'en créer un fork sur GitHub ; aucun autre droit n'est
+accordé.

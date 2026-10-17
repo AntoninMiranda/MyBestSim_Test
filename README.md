@@ -144,3 +144,7 @@ Pour la partie 2 :
 - **Données originales** : les CSV de la partie 1 réutilisés pour comparer forfaits pays et régionaux.
 - **Vérification** : chaque chiffre recoupé avec sa source, chaque lien interne testé, les chiffres contradictoires écartés ou présentés comme indicatifs.
 - **Décisions humaines** : format (page web), pas de vécu inventé, CSV en appui, ajout du référencement sur les IA, images laissées en suggestions.
+
+## Licence
+
+Tous droits réservés. Le dépôt est public pour être consulté et évalué dans le cadre du test, pas pour être réutilisé : toute copie, modification ou utilisation du code ou de l'article demande mon accord écrit. Les données CSV (MyBestSim) et les composants shadcn/ui (MIT) restent sous leurs propres droits. Détails dans [LICENSE](LICENSE).
