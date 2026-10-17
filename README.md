@@ -1,8 +1,13 @@
-# Dashboard catalogue eSIM · MyBestSim
+# Test de recrutement MyBestSim
 
-Partie 1 du test de recrutement « Stagiaire Développeur IA & Automatisation » : un dashboard qui lit les fichiers CSV des fournisseurs et présente les statistiques clés du catalogue.
+Test « Stagiaire Développeur IA & Automatisation », en deux parties :
 
-**Dashboard en ligne : _lien Vercel à ajouter_**
+| Partie | Livrable | Lien |
+|---|---|---|
+| 1. Data & automatisation | Dashboard qui lit les CSV fournisseurs et présente les statistiques clés | **[mybestsimtest.vercel.app](https://mybestsimtest.vercel.app)** |
+| 2. Contenu SEO | Article « Internet en croisière : quelle eSIM choisir ? » | **[Version web](https://mybestsimtest.vercel.app/fr/blog/internet-en-croisiere-esim)** · [Version Markdown](docs/seo/article-internet-en-croisiere.md) · [Brief SEO](docs/seo/brief-internet-en-croisiere.md) |
+
+# Partie 1 : dashboard catalogue eSIM
 
 ## Ce que montre le dashboard
 
@@ -47,6 +52,38 @@ On ne sait pas comment MyBestSim reçoit ses CSV. Le dashboard sépare donc **la
 
 Ce stockage n'est pas construit volontairement : ce serait faire des hypothèses sur un système qu'on ne connaît pas.
 
+# Partie 2 : article SEO
+
+**Sujet imposé :** « Internet en croisière : quelle eSIM choisir ? », écrit pour MyBestSim.
+
+## Livrables
+
+- **[L'article en ligne](https://mybestsimtest.vercel.app/fr/blog/internet-en-croisiere-esim)** : une vraie page web, pré-rendue en HTML statique, avec ses titres, tableaux, liens et suggestions d'images.
+- **[La version Markdown](docs/seo/article-internet-en-croisiere.md)**, l'un des formats demandés, à reprendre dans le CMS de MyBestSim.
+- **[Le brief SEO](docs/seo/brief-internet-en-croisiere.md)** : l'analyse de la concurrence qui justifie la longueur, l'angle et le plan.
+
+## Démarche
+
+1. **Analyse de la concurrence avant d'écrire.** Lecture des pages qui rankent (Holafly, GoMoWorld, Roamless, Voyages Exception, Futura) : format, longueur, sections, ce qui leur manque. Méthode `content-brief` du plugin [superseo](https://github.com/inhouseseo/superseo-skills) pour Claude Code.
+2. **Longueur déduite de la concurrence** : les pages en tête font ~1 500 mots et laissent des sections vides ou des prix sans source. Cible retenue : 2 000 à 2 400 mots de texte, sans remplissage.
+3. **Rédaction** avec la méthode `write-content` du même plugin (réponse courte en tête de chaque section, règles contre le style « écrit par une IA »), puis vérification de chaque chiffre et de chaque lien interne.
+
+## Choix assumés
+
+- **Un angle honnête que les vendeurs d'eSIM évitent.** Aux escales dans l'UE, le forfait français suffit (itinérance européenne) : une eSIM n'est utile qu'hors UE. En mer, seuls le Wi-Fi du bateau ou une eSIM spéciale croisière fonctionnent. C'est ce qui différencie un comparateur d'un vendeur.
+- **Des chiffres que personne d'autre n'a.** Les 5 056 forfaits des CSV de la partie 1 servent à comparer forfait pays, Europe et Monde à volume et durée identiques. Résultat inattendu : un forfait Monde coûte quasiment le même prix qu’un forfait Europe (18,25 € contre 18,24 € pour 5 Go sur 15 jours). Ces données sont celles du test ; l'article les présente comme une analyse MyBestSim, avec la méthode.
+- **Tous les autres chiffres sont sourcés et datés** (JeChange pour l'itinérance maritime, Cruise Fever pour le Wi-Fi à bord, GigSky, règlement (UE) 2022/612). Aucune anecdote inventée : sans vécu de croisière, le ton est « on a analysé », pas « j'ai testé ».
+- **Référencement sur les IA (GEO)** en plus de Google : titres en questions, réponse autonome de 40 à 60 mots en tête de chaque section, tableaux en HTML, données JSON-LD `Article` + `FAQPage` + `BreadcrumbList`, `robots.txt` qui autorise explicitement GPTBot, ClaudeBot, PerplexityBot et Google-Extended.
+- **Images laissées en suggestions**, comme le demande la consigne : pas de photo prise sur le web (droits) ni d'image générée présentée comme une vraie capture.
+- **Article en français uniquement** : `/en/blog/...` renvoie une 404 plutôt qu'une traduction automatique.
+
+## Points remontés pour MyBestSim
+
+- **Cannibalisation.** MyBestSim a déjà deux articles sur ce sujet (« Choisir une eSIM pour la croisière et la terre » et « Meilleure eSIM pour les bateaux de croisière 2026 »). Publier un troisième ferait se concurrencer les pages. Recommandation : en faire la page de référence et rediriger les deux anciennes vers elle (301).
+- **Page Maroc supprimée.** `mybestsim.com/fr/comparaison-meilleure-carte-esim-maroc/` répond 410 alors que le Maroc est une escale fréquente des croisières en Méditerranée. L'article renvoie vers la page Monde en attendant.
+
+# Le projet
+
 ## Architecture
 
 Clean Architecture allégée : les dépendances vont toujours vers le domaine.
@@ -60,7 +97,10 @@ src/
   i18n/            # langues, dictionnaires FR/EN
   components/      # vues (shadcn/ui) ; seul dashboard-client.tsx a un état
   app/[lang]/      # pages Next.js, une par langue, pré-rendues en statique
+    blog/internet-en-croisiere-esim/  # article de la partie 2 (français uniquement)
+  app/robots.ts    # robots.txt (robots de recherche et d'IA autorisés)
   proxy.ts         # redirige / vers la langue du navigateur
+docs/seo/          # brief SEO et article en Markdown (partie 2)
 ```
 
 On n'a pas mis de classes de use case, de repositories ni d'injection de dépendances : avec un seul cas d'usage (« calculer les stats d'un catalogue »), ce serait de la structure sans bénéfice.
@@ -90,9 +130,17 @@ Une clé oubliée fait échouer le typecheck et le test de parité des dictionna
 
 ## Utilisation de l'IA
 
-Le projet a été construit avec Claude Code, qui a servi d'assistant :
+Le projet a été construit avec Claude Code, qui a servi d'assistant.
+
+Pour la partie 1 :
 - **Analyse des données** : profilage des 18 fichiers (doublons, devises, valeurs vides, codes pays) pour repérer les vrais pièges (illimités, `NA`) avant d'écrire du code.
 - **Remise en question des idées** : le prix moyen au Go par fournisseur a été vérifié sur les données avant d'être retenu, ce qui a révélé le biais et mené à l'indice à forfait équivalent.
 - **Conception** : discussion du besoin métier, de l'architecture et de la façon de recevoir les CSV, avec les décisions prises par moi à chaque étape.
 - **Développement guidé par les tests** : les valeurs attendues ont été calculées d'abord, puis servies d'oracle aux tests.
 - **Vérification** : lecture de la documentation de Next.js 16 fournie avec le paquet (les conventions ont changé), puis contrôle du rendu dans un navigateur (desktop, mobile, FR/EN, import de fichiers piégés).
+
+Pour la partie 2 :
+- **Recherche** : lecture des pages concurrentes, des tarifs des opérateurs et des compagnies, avec le plugin superseo qui impose une méthode (brief, lacunes, plan) au lieu d'un article générique.
+- **Données originales** : les CSV de la partie 1 réutilisés pour comparer forfaits pays et régionaux.
+- **Vérification** : chaque chiffre recoupé avec sa source, chaque lien interne testé, les chiffres contradictoires écartés ou présentés comme indicatifs.
+- **Décisions humaines** : format (page web), pas de vécu inventé, CSV en appui, ajout du référencement sur les IA, images laissées en suggestions.
