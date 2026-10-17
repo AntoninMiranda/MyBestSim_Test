@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CardSim, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 import { DashboardClient } from "@/components/dashboard-client";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { computeStats } from "@/domain/stats";
 import { isLocale } from "@/i18n/config";
@@ -22,19 +22,9 @@ export default async function DashboardPage({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <header className="border-b border-border">
-        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-4">
-          <Link href={`/${lang}`} aria-label={dict.header.home} className="flex items-center gap-2.5 text-navy">
-            <span className="flex size-[38px] items-center justify-center rounded-[10px] bg-brand">
-              <CardSim className="size-5 text-white" aria-hidden="true" />
-            </span>
-            <span className="text-[21px] font-extrabold tracking-tight">
-              MyBest<span className="text-brand">Sim</span>
-            </span>
-          </Link>
-          <LocaleSwitcher current={lang} label={dict.header.language} names={dict.header.languages} />
-        </div>
-      </header>
+      <SiteHeader homeHref={`/${lang}`} homeLabel={dict.header.home}>
+        <LocaleSwitcher current={lang} label={dict.header.language} names={dict.header.languages} />
+      </SiteHeader>
 
       <section className="bg-hero border-b border-blue-line">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-8 px-6 pt-[52px] pb-11">

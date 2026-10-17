@@ -3,12 +3,8 @@ import { Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
+import { siteUrl } from "@/lib/site-url";
 import "../globals.css";
-
-// URL publique pour les métadonnées (liens alternatifs FR/EN) ; Vercel fournit le domaine de production.
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
 
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
