@@ -153,3 +153,59 @@
 @utility shadow-section {
   box-shadow: 0 0 0 1px rgb(30 58 138 / 8%), 0 4px 6px -1px rgb(30 58 138 / 8%), 0 20px 40px -8px rgb(30 58 138 / 15%);
 }
+
+/* Typographie des articles de blog : le contenu est du HTML simple (titres, listes, tableaux), stylé ici en un seul endroit. */
+@layer components {
+  .article {
+    @apply text-[17px] leading-[1.7] text-foreground;
+  }
+  .article h2 {
+    @apply mt-14 mb-4 scroll-mt-6 text-[26px] leading-tight font-extrabold tracking-tight text-navy;
+  }
+  .article h3 {
+    @apply mt-8 mb-3 text-[20px] leading-snug font-bold text-navy;
+  }
+  .article p,
+  .article ul,
+  .article ol {
+    @apply my-4;
+  }
+  .article ul {
+    @apply list-disc pl-6;
+  }
+  .article ol {
+    @apply list-decimal pl-6;
+  }
+  .article li {
+    @apply my-1.5;
+  }
+  .article a {
+    @apply font-semibold text-primary underline underline-offset-2 hover:text-navy;
+  }
+  .article strong {
+    @apply font-bold text-navy;
+  }
+  /* Réponse courte en tête de section : le passage que Google et les moteurs IA reprennent. */
+  .article .answer {
+    @apply rounded-r-[10px] border-l-4 border-brand bg-blue-soft px-5 py-4;
+  }
+  .article .table-wrap {
+    @apply my-6 overflow-x-auto rounded-[12px] border border-blue-line;
+  }
+  .article table {
+    @apply w-full border-collapse text-left text-[15px];
+  }
+  /* Largeur minimale par colonne : sur mobile, le tableau défile dans son cadre plutôt que d'écraser le texte. */
+  .article th {
+    @apply min-w-32 bg-blue-soft px-4 py-3 font-bold text-navy;
+  }
+  .article td {
+    @apply min-w-32 border-t border-blue-line px-4 py-3 align-top;
+  }
+  .article figure {
+    @apply my-8 rounded-[12px] border-2 border-dashed border-blue-border bg-blue-soft/60 px-5 py-6 text-center text-[15px] text-muted-foreground;
+  }
+  .article .note {
+    @apply text-[14px] text-muted-foreground;
+  }
+}
